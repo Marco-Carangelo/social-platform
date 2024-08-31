@@ -1,44 +1,44 @@
 1)
-select `users`.* 
-from `users`
-inner join `medias`
-on `users`.id = `medias`.user_id
-where `medias`.type = 'video'
-group by `users`.id ;
+SELECT `users`.* 
+FROM `users`
+INNER JOIN `medias`
+ON `users`.id = `medias`.user_id
+WHERE `medias`.type = 'video'
+GROUP BY `users`.id ;
 
 2)
-select `posts`.*
-from `posts`
-left join `likes`
-on `posts`.id = `likes`.post_id
-where `likes`.post_id IS null;
+SELECT `posts`.*
+FROM `posts`
+LEFT JOIN `likes`
+ON `posts`.id = `likes`.post_id
+WHERE `likes`.post_id IS null;
 
 3.1)
-select `likes`.post_id , count(`likes`.post_id) as 'likes_per_post'
-from `likes`
-group by `likes`.post_id;
+SELECT `likes`.post_id , COUNT(`likes`.post_id) AS 'likes_per_post'
+FROM `likes`
+GROUP BY `likes`.post_id;
 
 3.2)
-select `posts`.title as 'titolo_post', `posts`.id as 'post_id', count(`likes`.post_id) as 'likes_per_post'
-from `likes`
-right join `posts`
-on `likes`.post_id = `posts`.id
-group by `posts`.id;
+SELECT `posts`.title AS 'titolo_post', `posts`.id AS 'post_id', COUNT(`likes`.post_id) AS 'likes_per_post'
+FROM `likes`
+RIGHT JOIN `posts`
+ON `likes`.post_id = `posts`.id
+GROUP BY `posts`.id;
 
 4)
-select `users`.*, count(`medias`.user_id)  as 'numero_media_caricati'
-from `users`
-inner join `medias`
-on `users`.id = `medias`.user_id 
-group by `medias`.user_id
-order by count(`medias`.user_id) desc;
+SELECT `users`.*, COUNT(`medias`.user_id)  AS 'numero_media_caricati'
+FROM `users`
+INNER JOIN `medias`
+ON `users`.id = `medias`.user_id 
+GROUP BY `medias`.user_id
+ORDER BY COUNT(`medias`.user_id) desc;
 
 5)
-select `users`.* , count(`likes`.user_id) as 'totale_likes'
-from `users`
-inner join `likes`
-on `users`.id = `likes`.user_id
-group by `likes`.user_id 
-order by count(`likes`.user_id) desc;
+SELECT `users`.* , COUNT(`likes`.user_id) AS 'totale_likes'
+FROM `users`
+INNER JOIN `likes`
+ON `users`.id = `likes`.user_id
+GROUP BY `likes`.user_id 
+ORDER BY COUNT(`likes`.user_id) desc;
 
 
