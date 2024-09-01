@@ -31,7 +31,7 @@ FROM `users`
 INNER JOIN `medias`
 ON `users`.id = `medias`.user_id 
 GROUP BY `medias`.user_id
-ORDER BY COUNT(`medias`.user_id) desc;
+ORDER BY `numero_media_caricati` DESC;
 
 5)
 SELECT `users`.* , COUNT(`likes`.user_id) AS 'totale_likes'
@@ -39,6 +39,6 @@ FROM `users`
 INNER JOIN `likes`
 ON `users`.id = `likes`.user_id
 GROUP BY `likes`.user_id 
-ORDER BY COUNT(`likes`.user_id) desc;
+ORDER BY `totale_likes`;
 
 
